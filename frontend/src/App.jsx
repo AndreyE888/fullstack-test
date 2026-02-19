@@ -292,7 +292,7 @@ function App() {
             </div>
 
             <div style={{ flex: 1 }}>
-                <h3>Правое окно (сортировка)</h3>
+                <h3>Правое окно</h3>
                 <input
                     type="text"
                     placeholder="Фильтр по ID в правом окне"

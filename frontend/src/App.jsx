@@ -295,7 +295,7 @@ function App() {
                 <h3>Правое окно</h3>
                 <input
                     type="text"
-                    placeholder="Фильтр по ID в правом окне"
+                    placeholder="Фильтр по ID"
                     value={rightFilter}
                     onChange={(e) => setRightFilter(e.target.value)}
                     style={{ marginBottom: '10px', width: '100%' }}

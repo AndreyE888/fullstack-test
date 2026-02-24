@@ -1,16 +1,41 @@
-# React + Vite
+# Infinite Scroll with Drag & Drop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Тестовое задание: список из 1 000 000 элементов с выбором и сортировкой.
 
-Currently, two official plugins are available:
+## Функционал
+- **Левое окно** — все элементы, кроме выбранных
+- **Правое окно** — выбранные элементы
+- **Фильтрация** по ID в обоих окнах
+- **Drag&Drop** сортировка в правом окне
+- **Инфинити-скролл** (подгрузка по 20 элементов)
+- **Сохранение состояния** между обновлениями страницы
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Технологии
+- **Frontend**: React + Vite
+- **Backend**: Express.js
+- **Хостинг**: Vercel
 
-## React Compiler
+## Запуск локально
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Бэкенд
+```bash
+cd backend
+npm install
+node index.js
+```
+### Фронтенд
+```bash
+cd frontend
+npm install
+npm run dev
+```
+## Особенности реализации
+- Очередь добавления элементов с дедупликацией
+- Батчинг операций (добавление раз в 10 сек, обновление раз в 1 сек)
+- Состояние хранится в памяти сервера
+- Пагинация с фильтрацией
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Ссылки
+- **Репозиторий**: https://github.com/AndreyE888/fullstack-test
+- **Фронтенд**: https://fullstack-test-brown.vercel.app/
+- **Бэкенд**: https://fullstack-test-1-fami.onrender.com

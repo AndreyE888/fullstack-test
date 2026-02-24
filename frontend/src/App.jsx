@@ -6,7 +6,6 @@ import './App.css'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
-// Компонент для перетаскиваемого элемента
 function SortableItem({ item, onRemove }) {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: item.id })
 

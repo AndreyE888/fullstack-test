@@ -5,23 +5,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Хранилище данных
 const items = new Map();
 
-// Очередь на добавление
 let pendingIds = new Set();
 
-// Состояние выбранных элементов
 let serverState = {
     selectedIds: []
 };
 
-// Заполняем 1 млн элементов (для теста 100)
-for (let i = 1; i <= 100; i++) {
+// Заполняю 1 млн элементов
+for (let i = 1; i <= 1000000; i++) {
     items.set(i, { id: i, selected: false, order: i });
 }
 
-// Получить элементы с пагинацией и фильтром
 app.get('/items', (req, res) => {
     const filter = req.query.filter || '';
     const page = parseInt(req.query.page) || 1;
@@ -41,7 +37,6 @@ app.get('/items', (req, res) => {
     });
 });
 
-// Добавить элемент в очередь
 app.post('/items/pending', (req, res) => {
     const { id } = req.body;
 
@@ -72,12 +67,12 @@ app.post('/state', (req, res) => {
     res.json({ ok: true });
 });
 
-// Проверка сервера
+//Проверка сервера
 app.get('/', (req, res) => {
     res.send('Бэкенд работает');
 });
 
-// ---- Батчинг добавления (раз в 10 сек) ----
+//Батчинг добавления (раз в 10 сек)
 setInterval(() => {
     if (pendingIds.size === 0) return;
 
@@ -92,13 +87,6 @@ setInterval(() => {
     pendingIds.clear();
 }, 10000);
 
-// ---- Батчинг состояния (раз в 1 сек) ----
-// Сейчас состояние уже обновляется через POST /state
-// Можно добавить рассылку всем клиентам, если нужно
-setInterval(() => {
-    // Здесь можно будет добавить логику для long polling или WebSockets
-    // Пока просто заглушка
-}, 1000);
 
 
 const PORT = process.env.PORT || 3001;
